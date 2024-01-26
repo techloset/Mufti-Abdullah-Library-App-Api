@@ -9,15 +9,16 @@ import {
   searchBooks,
 } from "../../redux/SearchSlice";
 import MonthlyCard from "../../components/monthlyCard/MonthlyCard";
+import Loader from "../../components/loader/Loader";
 
 const Searches= () => {
   const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
-
+  const [isLoading, setIsLoading] = useState(Boolean);
   const searches=useSelector(selectAllSearch) || [];
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-
+setIsLoading(true)
     if (query) {
       dispatch(searchBooks(query))
   
@@ -25,13 +26,17 @@ const Searches= () => {
           console.error("Error in searchBooks dispatch:", error);
         });
     }
- 
+ setIsLoading(false)
   }, [dispatch, query]);
   const handleSearch = (searchQuery: string) => {
     setQuery(searchQuery)
     dispatch(searchBooks(searchQuery));
   };
   return (
+  <>
+  {isLoading?(<Loader/>):(
+      
+      
     <div className="container mx-auto flex flex-col  py-16 text-center px-8" style={{fontFamily:"Hanken Grotesk"}}>
       <div className="grid grid-cols-1">
         <h1 className="text-center ps-0 text-5xl mt-10 mb-10 font-bold text-[#183B56]">
@@ -58,7 +63,7 @@ const Searches= () => {
               thumbnail={search.thumbnail}
               amount={search.amount == undefined ? search.amount : "N/A"}
               id={search.id}
-            />
+              />
           ) : (
             <div key={search.id}>N/A</div>
           )
@@ -68,6 +73,8 @@ const Searches= () => {
     <button className='font-bold text-[16px]'style={{fontFamily:"Hanken Grotesk"}}>MORE</button>
 </div>
     </div>
+  )}  
+        </>
   );
 };
 
