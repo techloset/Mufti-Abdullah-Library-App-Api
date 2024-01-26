@@ -22,7 +22,6 @@ export const MostPopularBooks = createAsyncThunk(
   async () => {
     try {
       const response = await instance.get(`volumes?q=trending`);
-      console.log(response.data.items)
       return response.data.items;
     } catch (error) {
       throw error;

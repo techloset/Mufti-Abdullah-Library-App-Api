@@ -47,7 +47,6 @@ function Detail() {
   
  
 
-  console.log("bookDetails", bookDetails);
 
   return (
 <>

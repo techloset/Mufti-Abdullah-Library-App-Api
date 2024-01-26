@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/Store";
 import { MostPopularBooks, selectAllBooks } from "../../redux/MostPopularSlice";
 import { BestMonthBooks, selectAllBestBooks } from "../../redux/BestOfThisMonthSlice";
-import MonthlyCard from "../mostRecomended/MonthlyCard";
+import MonthlyCard from "../monthlyCard/MonthlyCard";
 import Card from "../recomendedCard/Card";
+
 
 interface Books {
   id: string;
@@ -50,9 +51,7 @@ function HomeSection() {
   useEffect(() => {
     dispatch(BestMonthBooks());
   }, [dispatch]);
-  console.log("books", books);
-  console.log("bookstooo", bestBooks);
-  
+
   return ( <>{isTabletMode ?( 
    <div className="mx-auto container grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:grid-cols-full gap-8" style={{fontFamily:"Hanken Grotesk"}}>
  
@@ -187,6 +186,7 @@ function HomeSection() {
                       book.volumeInfo?.imageLinks?.thumbnail ??
                       "default-thumbnail.jpg"
                     }
+                    author={book.volumeInfo?.authors?.join().slice(0,8)}
                     amount={book.amount !== undefined ? book.amount : "N/A"}
                     id={book.id}
                   />

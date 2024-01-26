@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Heart from "../../assets/icons/heart.png";
 import React from 'react'
 interface Book {
   id?: string;

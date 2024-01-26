@@ -1,46 +1,31 @@
 import React, { useEffect, useState }  from "react";
-import Card from "../../components/bestOfMonth/Card";
+
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllSearch } from "../../redux/SearchSlice";
-import { useLocation, useParams } from "react-router-dom";
 import {
   Search,
   searchBooks,
-  selectIsLoading,
 } from "../../redux/SearchSlice";
-import MonthlyCard from "../../components/mostRecomended/MonthlyCard";
+import MonthlyCard from "../../components/monthlyCard/MonthlyCard";
 
 const Searches= () => {
-  // const { Query } = useParams();
   const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
 
   const searches=useSelector(selectAllSearch) || [];
   const [query, setQuery] = useState("");
-console.log(searches)
-  // const location = useLocation();
-  // useEffect(() => {
-  //   const searchParams = new URLSearchParams(location.search);
-  //   const newQuery = searchParams.get("query") || "";
-  //   setQuery(newQuery);
-  // }, [location.search]);
+
   useEffect(() => {
-    // let isMounted = true;
+
     if (query) {
       dispatch(searchBooks(query))
-        // .then((data) => {
-        //   if (isMounted) {
-        //     dispatch(searchBooksFulfilled(data));
-        //   }
-        // })
+  
         .catch((error) => {
           console.error("Error in searchBooks dispatch:", error);
         });
     }
-    return () => {
-      // isMounted = false;
-    };
+ 
   }, [dispatch, query]);
   const handleSearch = (searchQuery: string) => {
     setQuery(searchQuery)
@@ -87,7 +72,3 @@ console.log(searches)
 };
 
 export default Searches;
-
-// function searchBooksFulfilled(data: import("@reduxjs/toolkit").PayloadAction<any, string, { arg: string; requestId: string; requestStatus: "fulfilled"; }, never> | import("@reduxjs/toolkit").PayloadAction<unknown, string, { arg: string; requestId: string; requestStatus: "rejected"; aborted: boolean; condition: boolean; } & ({ rejectedWithValue: true; } | ({ rejectedWithValue: false; } & {})), import("@reduxjs/toolkit").SerializedError>): any {
-//   throw new Error("Function not implemented.");
-// }

@@ -12,7 +12,6 @@ export const BestMonthBooks = createAsyncThunk(
   async () => {
     try {
       const response = await instance.get(`volumes?q=modren`);
-      console.log("best",response.data.items)
       return response.data.items;
     } catch (error) {
       throw error;
