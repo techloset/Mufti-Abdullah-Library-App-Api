@@ -16,9 +16,9 @@ const MonthlyCard: React.FC<Book> =({thumbnail,title,amount,id,details,author})=
         history(`/detail/${id}`);
        }
     return (
-        <div className="relative  w-[270px] h-[336px] sm:w-[358px] sm:h-[260px] rounded-md md:flex md:flex-row border-2"  onClick={handleClick}>
-            <div className="absolute md:static w-[92px]  sm:w-[119px] h-[137px] left-20 top-[-30px] sm:top-[0px] md:h-auto md:w-auto md:flex-1">
-                <img className='w-full h-full   rounded-md' src={thumbnail} alt="picture" />
+        <div className="relative  w-[270px] h-[336px] sm:w-[358px] sm:h-[260px] rounded-md md:flex md:flex-row border-2 p-2"  onClick={handleClick}>
+            <div className="absolute md:static  left-20 top-[-30px] sm:top-[0px] md:h-auto md:w-auto md:flex-1">
+                <img className='w-[92px]  sm:w-[160px] sm:h-[238px] h-[137px]   rounded-md' src={thumbnail} alt="picture" />
             </div>
             <div className="mt-[132px] md:mt-0 md:flex-1 p-4 flex flex-col justify-around text-center md:text-left">
                 <div>
