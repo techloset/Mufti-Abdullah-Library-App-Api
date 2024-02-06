@@ -23,7 +23,7 @@ const MonthlyCard: React.FC<Book> = ({
   };
   return (
     <div
-      className="relative  w-[270px] h-[336px] sm:w-[358px] sm:h-[260px] rounded-md md:flex md:flex-row border-2 p-2"
+      className="relative  w-[270px] h-[336px] sm:w-[358px] sm:h-[260px] rounded-md md:flex md:flex-row border-2 border-border p-2"
       onClick={handleClick}
     >
       <div className="absolute md:static  left-20 top-[-30px] sm:top-[0px] md:h-auto md:w-auto md:flex-1">
@@ -35,18 +35,18 @@ const MonthlyCard: React.FC<Book> = ({
       </div>
       <div className="mt-[132px] md:mt-0 md:flex-1 p-4 flex flex-col justify-around text-center md:text-left">
         <div>
-          <p className="font-semibold italic text-[22px] text-wrap text-[#183B56] mb-2 font-hanken">
+          <p className="font-semibold italic text-[22px] text-wrap text-primary mb-2 font-hanken">
             {title}
           </p>
-          <p className="font-semibold  text-[16px] text-wrap text-[#183B56] font-hanken">
+          <p className="font-semibold  text-[16px] text-wrap text-primary font-hanken">
             {author}
           </p>
-          <p className="font-bold  text-[22px] text-wrap text-[#1565D8] mt-2 font-hanken">
+          <p className="font-bold  text-[22px] text-wrap text-secondary mt-2 font-hanken">
             {amount}
           </p>
         </div>
         <div className="flex justify-between items-center mt-2 md:mt-3">
-          <button className="rounded-full bg-[#183B56] font-semibold sm:w-[101px] md:w-[70px] lg:w-[101px] text-center p-2 text-[white] sm:text-[14px] md:text-[10px] lg:text-[14px]">
+          <button className="rounded-full bg-primary font-semibold sm:w-[101px] md:w-[70px] lg:w-[101px] text-center p-2 text-[white] sm:text-[14px] md:text-[10px] lg:text-[14px]">
             Buy Now
           </button>
           <button className=" rounded-md">

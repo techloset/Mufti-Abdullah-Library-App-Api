@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-interface Book {
+type Book = {
   id?: string;
   title?: string;
   categories?: string[];
@@ -8,7 +8,7 @@ interface Book {
   amount?: number | string;
   details?: string;
   author?: string;
-}
+};
 const Card: React.FC<Book> = ({
   thumbnail,
   title,
@@ -27,7 +27,7 @@ const Card: React.FC<Book> = ({
       onClick={handleClick}
     >
       <div className="relative group">
-        <div className="bg-[#ECEEF2] sm:w-[204px] sm:h-[298px] w-[206px] h-[300px]  rounded-md">
+        <div className="bg-border sm:w-[204px] sm:h-[298px] w-[206px] h-[300px]  rounded-md">
           <img
             className="sm:w-[204px] sm:h-[298px] w-[206px] h-[300px] rounded-md"
             src={thumbnail}
@@ -35,7 +35,7 @@ const Card: React.FC<Book> = ({
           />
         </div>
         <div className="absolute top-0 left-0 sm:w-[204px] sm:h-[298px] p-3 w-[206px] h-[300px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 bg-opacity-80 rounded-md">
-          <p className=" font-semibold italic text-[22px] text-wrap text-[white] sm:mt-2 mt-0 font-hanken">
+          <p className=" font-semibold italic text-[22px] text-wrap text-white sm:mt-2 mt-0 font-hanken">
             {title}
           </p>
           <p className=" font-semibold  text-[16px] text-wrap text-[white] mt-2 mx-auto sm:mx-0 font-hanken">

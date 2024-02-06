@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-
 import { RxCross2 } from "react-icons/rx";
 import { FaBars } from "react-icons/fa";
 import Logo from "../../assets/logo/Logo.png";
@@ -19,7 +18,7 @@ const Navbar: React.FC = () => {
       </div>
 
       <div className="hidden sm:flex  flex-end  px-2 rounded-full">
-        <ul className="flex items-center text-[#183B56] gap-3">
+        <ul className="flex items-center text-primary gap-3">
           <li className="px-2 mb-2 mx-2">
             <Link to="/">Home</Link>
           </li>
@@ -71,8 +70,8 @@ const Navbar: React.FC = () => {
           </li>
         </ul>
         <Link to="/search">
-          <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 ms-8 overflow-hidden text-sm font-medium text-[#1565D8] rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800 w-[131px] h-[48px]">
-            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
+          <button className="relative inline-flex items-center justify-center  mb-2 me-2 ms-8 overflow-hidden text-sm font-medium text-secondary rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-secondary dark:text-secondary focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800 w-[131px] h-[48px]">
+            <span className="relative px-5 py-3 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-50 w-full h-full hover:bg-bgbtn">
               Search
             </span>
           </button>
@@ -168,7 +167,7 @@ const Navbar: React.FC = () => {
               </li>
               <li className="text-xl py-2 ps-3 mb-2">
                 <Link to="/search">
-                  <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-[#1565D8] rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                  <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-secondary rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-secondary dark:text-secondary focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
                     <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                       Search
                     </span>

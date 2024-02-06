@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../../assets/logo/Logo.png";
 import Layer from "../../assets/footerCircule/Layer.png";
 import Circle from "../../assets/footerIcon/Base.png";
@@ -8,12 +7,12 @@ function Footer() {
   return (
     <>
       <footer>
-        <div className="container mx-auto gap-2 grid grid-cols-2  md:grid-cols-5  md:flex-row sm:flex-col justify-between mt-5 w-full static text-[#183B56]">
+        <div className="container mx-auto gap-2 grid grid-cols-2  md:grid-cols-5  md:flex-row sm:flex-col justify-between mt-5 w-full static text-primary">
           <div className="flex flex-col mx-auto sm:ms-4 max-w-[262px] order-last md:order-first sm:text-start text-center   sm:col-auto col-span-full">
             <div className="flex content-center text-center justify-center sm:content-start sm:text-start sm:justify-start mb-5">
               <img src={Logo} width={100} height={100} alt="Logo" />
             </div>
-            <p className="text-[#5A7184] text-wrap  mb-5">
+            <p className="text-tersary text-wrap  mb-5">
               Build a modern and creative website with crealand
             </p>
             <span className="flex flex-row gap-1 ms-0 justify-center sm:justify-start">
@@ -70,7 +69,7 @@ function Footer() {
               className="absolute transform left-50% "
             />
           </div>
-          <p className="text-[#5A7184]">Copyright © 2019. Crafted with love.</p>
+          <p className="text-tersary">Copyright © 2019. Crafted with love.</p>
         </div>
       </footer>
     </>

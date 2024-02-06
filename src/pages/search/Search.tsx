@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllSearch } from "../../redux/SearchSlice";
+import { selectAllSearch, selectIsLoading } from "../../redux/SearchSlice";
 import { searchBooks } from "../../redux/SearchSlice";
 import MonthlyCard from "../../components/monthlyCard/MonthlyCard";
 import Loader from "../../components/loader/Loader";
@@ -11,23 +10,25 @@ import { BooksDetails } from "../../constants/Types";
 
 const Searches = () => {
   const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
-  const [isLoading, setIsLoading] = useState(Boolean);
+  const isLoading = useSelector(selectIsLoading);
   const searches = useSelector(selectAllSearch) || [];
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
     if (query) {
-      dispatch(searchBooks(query)).catch((error) => {
-        console.error("Error in searchBooks dispatch:", error);
-      });
+      dispatch(searchBooks(query));
     }
-    setIsLoading(false);
-  }, [dispatch, query]);
-  const handleSearch = (searchQuery: string) => {
-    setQuery(searchQuery);
-    dispatch(searchBooks(searchQuery));
+  }, [dispatch]);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
   };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(searchBooks(query));
+  };
+
   return (
     <>
       {isLoading ? (
@@ -35,19 +36,26 @@ const Searches = () => {
       ) : (
         <div className="container mx-auto flex flex-col  py-16 text-center px-8 font-hanken">
           <div className="grid grid-cols-1">
-            <h1 className="text-center ps-0 text-5xl mt-10 mb-10 font-bold text-[#183B56]">
+            <h1 className="text-center ps-0 text-5xl mt-10 mb-10 font-bold text-primary">
               Search Book
             </h1>
-            <div className="items-center mx-auto bg-slate-200 rounded-full justify-center flex lg:w-[610px] sm:w-[334px] h-[49px] md:h-[54px]">
-              <input
-                className="bg-transparent w-full ps-4 focus:outline-none"
-                type="text"
-                placeholder="Search Books"
-                onChange={(e) => handleSearch(e.target.value)}
-              />
+            <div className="items-center mx-auto bg-bgtertiary  rounded-full justify-center flex lg:w-[610px] sm:w-[334px] h-[49px] md:h-[54px]">
+              <form
+                onSubmit={handleSubmit}
+                className="items-center mx-auto bg-bgtertiary  rounded-full justify-center flex lg:w-[610px] sm:w-[334px] h-[49px] md:h-[54px]"
+              >
+                <input
+                  className="bg-bgtertiary text-black bg-opacity-25 placeholder-black  w-full ps-4 focus:outline-none"
+                  type="text"
+                  placeholder="Search Books"
+                  value={query}
+                  onChange={handleSearch}
+                />
+                <button type="submit"></button>
+              </form>
             </div>
           </div>
-          <h1 className="text-center flex sm:justify-start justify-center ps-0 text-[32px] text-[#183B56] mt-[180px] sm:mb-8 mb-10 font-bold">
+          <h1 className="text-center flex sm:justify-start justify-center ps-0 text-[32px] text-primary mt-[180px] sm:mb-8 mb-10 font-bold">
             Search Results
           </h1>
           <div className="grid grid-cols-1 text-center justify-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -57,7 +65,8 @@ const Searches = () => {
                   key={search.id}
                   title={search.title.slice(0, 18) + ".."}
                   thumbnail={search.thumbnail}
-                  amount={search.amount == undefined ? search.amount : "N/A"}
+                  author={search?.author?.join(", ").slice(0, 10)}
+                  amount={search.amount === undefined ? search.amount : "N/A"}
                   id={search.id}
                 />
               ) : (
@@ -65,7 +74,7 @@ const Searches = () => {
               )
             )}
           </div>
-          <div className="bg-[#E8F0FB] flex justify-center content-center text-center items-center p-2 mx-auto h-[72px] sm:w-[362px] w-[270px] mt-5  text-[#1565D8]">
+          <div className="bg-bgbtn flex justify-center content-center text-center items-center p-2 mx-auto h-[72px] sm:w-[362px] w-[270px] mt-5  text-secondary">
             <button className="font-bold text-[16px] font-hanken">MORE</button>
           </div>
         </div>
