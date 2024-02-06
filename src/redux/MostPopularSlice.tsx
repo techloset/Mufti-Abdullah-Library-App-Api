@@ -1,18 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import instance from "../helper/Instance";
-
-export interface Books {
-  id?: string;
-    title: string;
-    categories?: string[];
-      thumbnail:string
-      amount: number;
-      description:string;
-      author:[];
-}
+import instance from "../utilites/Instance";
+import { BooksDetails } from "../constants/Types";
 
 interface BookState {
-  books: Books[];
+  books: BooksDetails[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
@@ -23,12 +14,11 @@ export const MostPopularBooks = createAsyncThunk(
     try {
       const response = await instance.get(`volumes?q=trending`);
       return response.data.items;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      throw new Error(error?.message ?? "Fetch movies error");
     }
   }
 );
-
 
 const MostPopularSlice = createSlice({
   name: "books",

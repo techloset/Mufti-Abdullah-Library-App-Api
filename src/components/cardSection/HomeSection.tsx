@@ -3,7 +3,10 @@ import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/Store";
 import { MostPopularBooks, selectAllBooks } from "../../redux/MostPopularSlice";
-import { BestMonthBooks, selectAllBestBooks } from "../../redux/BestOfThisMonthSlice";
+import {
+  BestMonthBooks,
+  selectAllBestBooks,
+} from "../../redux/BestOfThisMonthSlice";
 import MonthlyCard from "../monthlyCard/MonthlyCard";
 import Card from "../recomendedCard/Card";
 import Loader from "../loader/Loader";
@@ -28,10 +31,10 @@ function HomeSection() {
 
   useEffect(() => {
     checkTabletMode();
-    window.addEventListener('resize', checkTabletMode);
+    window.addEventListener("resize", checkTabletMode);
 
     return () => {
-      window.removeEventListener('resize', checkTabletMode);
+      window.removeEventListener("resize", checkTabletMode);
     };
   }, []);
 
@@ -68,7 +71,7 @@ function HomeSection() {
       {isLoading ? (
         <Loader />
       ) : isTabletMode ? (
-        <div className="mx-auto container grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:grid-cols-full gap-8" style={{ fontFamily: "Hanken Grotesk" }}>
+        <div className="mx-auto container grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:grid-cols-full gap-8 font-hanken">
           <div className="col-span-2">
             <h1 className="ms-3 mt-3 font-bold italic text-[32px] mb-8 sm:mb-2 text-[#183B56]">
               Recommended Books
@@ -77,16 +80,25 @@ function HomeSection() {
               {books.map((book) => (
                 <MonthlyCard
                   key={book.id?.toString()}
-                  title={book.volumeInfo?.title.slice(0, 18) + "..." ?? "Title Not Found"}
-                  thumbnail={book.volumeInfo?.imageLinks?.thumbnail ?? "default-thumbnail.jpg"}
-                  author={book.volumeInfo?.authors?.join(", ").slice(0, 14) + "..." ?? "Authors Not Found"}
+                  title={
+                    book.volumeInfo?.title.slice(0, 18) + "..." ??
+                    "Title Not Found"
+                  }
+                  thumbnail={
+                    book.volumeInfo?.imageLinks?.thumbnail ??
+                    "default-thumbnail.jpg"
+                  }
+                  author={
+                    book.volumeInfo?.authors?.join(", ").slice(0, 14) + "..." ??
+                    "Authors Not Found"
+                  }
                   amount={book.amount !== undefined ? book.amount : "N/A"}
                   id={book.id}
                 />
               ))}
             </div>
             <div className="bg-[#E8F0FB] flex justify-center content-center text-center items-center p-2 h-[72px] text-[#1565D8]">
-              <p className="font-bold text-[16px]" style={{ fontFamily: "Hanken Grotesk" }}>
+              <p className="font-bold text-[16px] font-hanken">
                 MORE RECOMMENDATIONS
               </p>
             </div>
@@ -97,20 +109,28 @@ function HomeSection() {
             </h1>
             <div className="bg-[#B3BAC5] rounded-md p-5 space-y-3">
               {bestBooks &&
-                bestBooks.slice(0, 6).map((book) => (
-                  <Card
-                    key={book.id?.toString()}
-                    title={book.volumeInfo?.title.slice(0, 8) + "...." ?? "Title Not Exist"}
-                    thumbnail={book.volumeInfo?.imageLinks?.thumbnail ?? "default-thumbnail.jpg"}
-                    author={book.volumeInfo?.authors?.join().slice(0, 8)}
-                    amount={book.amount !== undefined ? book.amount : "N/A"}
-                    id={book.id}
-                  />
-                ))}
+                bestBooks
+                  .slice(0, 6)
+                  .map((book) => (
+                    <Card
+                      key={book.id?.toString()}
+                      title={
+                        book.volumeInfo?.title.slice(0, 8) + "...." ??
+                        "Title Not Exist"
+                      }
+                      thumbnail={
+                        book.volumeInfo?.imageLinks?.thumbnail ??
+                        "default-thumbnail.jpg"
+                      }
+                      author={book.volumeInfo?.authors?.join().slice(0, 8)}
+                      amount={book.amount !== undefined ? book.amount : "N/A"}
+                      id={book.id}
+                    />
+                  ))}
             </div>
             <hr className="border-gray-400" />
             <div className="flex justify-center p-6 text-center text-bold text-[#1565D8]">
-              <p className="font-bold text-[16px]" style={{ fontFamily: "Hanken Grotesk" }}>
+              <p className="font-bold text-[16px] font-hanken">
                 SEE BEST BOOKS
               </p>
             </div>
@@ -124,19 +144,33 @@ function HomeSection() {
             </h1>{" "}
             <div className="pt-8 ms-10 md:pt-0 mt-5 md:mt-0 overflow-x-auto whitespace-nowrap mx-auto no-scrollbar md:flex md:flex-wrap">
               {books.map((book) => (
-                <div key={book.id?.toString()} className="inline-block mr-4 mb-5">
+                <div
+                  key={book.id?.toString()}
+                  className="inline-block mr-4 mb-5"
+                >
                   <MonthlyCard
-                    title={book.volumeInfo?.title.slice(0, 20) + "..." ?? "Title Not Found"}
-                    thumbnail={book.volumeInfo?.imageLinks?.thumbnail ?? "default-thumbnail.jpg"}
-                    amount={book.amount !== undefined || "" ? book.amount : "N/A"}
-                    author={book.volumeInfo?.authors?.join(", ").slice(0, 20) + "..." ?? "Authors Not Found"}
+                    title={
+                      book.volumeInfo?.title.slice(0, 20) + "..." ??
+                      "Title Not Found"
+                    }
+                    thumbnail={
+                      book.volumeInfo?.imageLinks?.thumbnail ??
+                      "default-thumbnail.jpg"
+                    }
+                    amount={
+                      book.amount !== undefined || "" ? book.amount : "N/A"
+                    }
+                    author={
+                      book.volumeInfo?.authors?.join(", ").slice(0, 20) +
+                        "..." ?? "Authors Not Found"
+                    }
                     id={book.id}
                   />
                 </div>
               ))}
             </div>
             <div className="bg-[#E8F0FB] flex justify-center content-center text-center items-center p-2 h-[72px] text-[#1565D8]">
-              <p className="font-bold text-[16px]" style={{ fontFamily: "Hanken Grotesk" }}>
+              <p className="font-bold text-[16px] font-hanken">
                 MORE RECOMMENDATIONS
               </p>
             </div>
@@ -148,20 +182,28 @@ function HomeSection() {
               </h1>{" "}
               <div className="flex flex-col gap-5 items-center border-gray-200 p-4 rounded-md">
                 {bestBooks &&
-                  bestBooks.slice(0, 6).map((book) => (
-                    <Card
-                      key={book.id?.toString()}
-                      title={book.volumeInfo?.title.slice(0, 14) + "...." ?? "not exist"}
-                      thumbnail={book.volumeInfo?.imageLinks?.thumbnail ?? "default-thumbnail.jpg"}
-                      author={book.volumeInfo?.authors?.join().slice(0, 8)}
-                      amount={book.amount !== undefined ? book.amount : "N/A"}
-                      id={book.id}
-                    />
-                  ))}
+                  bestBooks
+                    .slice(0, 6)
+                    .map((book) => (
+                      <Card
+                        key={book.id?.toString()}
+                        title={
+                          book.volumeInfo?.title.slice(0, 14) + "...." ??
+                          "not exist"
+                        }
+                        thumbnail={
+                          book.volumeInfo?.imageLinks?.thumbnail ??
+                          "default-thumbnail.jpg"
+                        }
+                        author={book.volumeInfo?.authors?.join().slice(0, 8)}
+                        amount={book.amount !== undefined ? book.amount : "N/A"}
+                        id={book.id}
+                      />
+                    ))}
               </div>
               <hr className="border-gray-400" />
               <div className="flex justify-center p-6 text-center text-bold text-[#1565D8]">
-                <p className="font-bold text-[16px]" style={{ fontFamily: "Hanken Grotesk" }}>
+                <p className="font-bold text-[16px] font-hanken">
                   SEE BEST BOOKS
                 </p>
               </div>
