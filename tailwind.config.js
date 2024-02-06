@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'hanken': ['Hanken Grotesk', 'sans-serif'],
+    },
   },
   plugins: [],
 }

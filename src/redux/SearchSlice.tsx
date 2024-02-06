@@ -1,22 +1,12 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import instance from "../helper/Instance";
-
-export interface Search {
-  id?: string;
-    title: string;
-    categories?: string[];
-      thumbnail:string
-      amount: number | string;
-      description:string;
-      author:[];
-}
+import instance from "../utilites/Instance";
+import { BooksDetails } from "../constants/Types";
 
 export interface SearchState {
-  searches: Search[];
+  searches: BooksDetails[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
-
 
 export const searchBooks = createAsyncThunk(
   "search/searchBooks",
@@ -30,11 +20,11 @@ export const searchBooks = createAsyncThunk(
         thumbnail: item.volumeInfo.imageLinks?.thumbnail || "",
         amount: item.saleInfo?.listPrice?.amount || 0,
         description: item.volumeInfo.description,
-        author: item.volumeInfo.authors|| []
+        author: item.volumeInfo.authors || [],
       }));
       return searchData;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      throw new Error(error?.message ?? "Fetch movies error");
     }
   }
 );
@@ -47,7 +37,7 @@ const searchSlice = createSlice({
     error: null,
   } as SearchState,
   reducers: {
-    setSearches: (state, action: PayloadAction<Search[]>) => {
+    setSearches: (state, action: PayloadAction<BooksDetails[]>) => {
       state.searches = action.payload;
       state.status = "succeeded";
     },
@@ -67,7 +57,6 @@ const searchSlice = createSlice({
       });
   },
 });
-
 
 export const { reducer: searchReducer, actions } = searchSlice;
 export const { setSearches } = actions;

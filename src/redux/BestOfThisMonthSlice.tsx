@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import instance from "../helper/Instance";
+import instance from "../utilites/Instance";
 
 interface BookState {
   bestBooks: [];
@@ -13,8 +13,8 @@ export const BestMonthBooks = createAsyncThunk(
     try {
       const response = await instance.get(`volumes?q=modren`);
       return response.data.items;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      throw new Error(error?.message ?? "Fetch movies error");
     }
   }
 );
