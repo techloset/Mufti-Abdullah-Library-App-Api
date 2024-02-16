@@ -34,23 +34,19 @@ function HomeSection() {
   const bestBooks: Books[] = useSelector(selectAllBestBooks) as Books[];
 
   useEffect(() => {
-    setIsLoading(true);
-    dispatch(MostPopularBooks())
-      .then(() => setIsLoading(false))
-      .catch((error) => {
-        console.error("Error fetching Most Popular Books:", error);
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        await dispatch(MostPopularBooks());
+        await dispatch(BestMonthBooks());
         setIsLoading(false);
-      });
-  }, [dispatch]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      }
+    };
 
-  useEffect(() => {
-    setIsLoading(true);
-    dispatch(BestMonthBooks())
-      .then(() => setIsLoading(false))
-      .catch((error) => {
-        console.error("Error fetching Best of the Month Books:", error);
-        setIsLoading(false);
-      });
+    fetchData();
   }, [dispatch]);
 
   return (

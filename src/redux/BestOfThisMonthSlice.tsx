@@ -42,9 +42,13 @@ const BestMonthSlice = createSlice({
       });
   },
 });
+
 export const selectAllBestBooks = (state: { bestBooks: BookState }) =>
   state.bestBooks.bestBooks;
+
 export const selectIsLoading = (state: { bestBooks: BookState }) =>
   state.bestBooks.status === "loading";
-export const { reducer: seasonsReducer } = BestMonthSlice;
+
+export const bestMonthReducer = BestMonthSlice.reducer;
+
 export default BestMonthSlice;

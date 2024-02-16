@@ -1,20 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-type Book = {
-  id?: string;
-  title?: string;
-  categories?: string[];
-  thumbnail: string;
-  amount?: number | string;
-  details?: string;
-  author?: string;
-};
-const Card: React.FC<Book> = ({
+import { BooksDetails } from "../../constants/Types";
+
+const Card: React.FC<BooksDetails> = ({
   thumbnail,
   title,
   amount,
   id,
-  details,
+  description,
   author,
 }) => {
   const history = useNavigate();
@@ -23,7 +16,7 @@ const Card: React.FC<Book> = ({
   };
   return (
     <div
-      className="grid grid-cols-1 sm:w-[204px] sm:h-[298px] w-[206px] h-[300px] gap-4 border-solid p-4 rounded-md card-container"
+      className="grid grid-cols-1 sm:w-[204px] sm:h-[298px] w-[206px] h-[300px] gap-4 border-solid p-4 rounded-md"
       onClick={handleClick}
     >
       <div className="relative group">
@@ -47,7 +40,7 @@ const Card: React.FC<Book> = ({
           </p>
           <p className=" font-bold  text-[22px] text-wrap text-[white] sm:mx-0 mx-auto font-hanken">
             {" "}
-            {details}
+            {description}
           </p>
         </div>
       </div>

@@ -3,9 +3,10 @@ export type BooksDetails = {
   title: string;
   categories?: string[];
   thumbnail: string;
-  amount: number;
+  amount: number | string;
   description?: string;
-  author?: [];
+  author?: [] | string;
+  items?: string;
 };
 export type Books = {
   id: string;
@@ -19,4 +20,10 @@ export type Books = {
     pageCount: number;
   };
   amount: string | number;
+};
+
+export type CategorySubComponentProps = {
+  heading: string;
+  subHeading: string;
+  imageSource: any;
 };

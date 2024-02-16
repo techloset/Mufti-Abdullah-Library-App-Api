@@ -5,36 +5,50 @@ import Group from "../../assets/icons/iconspace_Group.png";
 import Arrow from "../../assets/icons/arrow-right.png";
 
 const Category = () => {
+  const categories = [
+    {
+      heading: "Business & Finance",
+      subHeading: "Books about Business World",
+      imageSource: PieChart,
+    },
+    {
+      heading: "Self Improvement",
+      subHeading: "Books for Motivate Yourself",
+      imageSource: Diamond,
+    },
+    {
+      heading: "Novel Telenovela",
+      subHeading: "Books about Great Story",
+      imageSource: Book,
+    },
+    {
+      heading: "Skill in Future",
+      subHeading: "Books for Self Preparation",
+      imageSource: Group,
+    },
+  ];
+
   return (
     <div className="flex flex-wrap justify-center items-center relative">
-      <div className=" w-1/2 lg:w-1/4 p-2 flex justify-center items-center">
-        <div className="w-[140px] h-[182px] md:h-[240px] md:w-[265px] bg-slate-300 rounded-lg flex flex-col justify-center items-center text-center">
-          <img src={PieChart} alt="" className="mx-auto h-16 w-16" />
-          <p className="font-bold mt-4 sm:mt-2 md:mt-10">Business & Finance</p>
-          <p className="mt-1 sm:mt-1 md:mt-3">Books about Business World</p>
+      {categories.map((category, index) => (
+        <div
+          key={index}
+          className="w-1/2 lg:w-1/4 p-2 flex justify-center items-center"
+        >
+          <div className="w-[140px] h-[182px] md:h-[240px] md:w-[265px] bg-slate-300 rounded-lg flex flex-col justify-center items-center text-center">
+            <img
+              src={category.imageSource}
+              alt=""
+              className="mx-auto h-16 w-16"
+            />
+            <p className="font-bold mt-4 sm:mt-2 md:mt-10">
+              {category.heading}
+            </p>
+            <p className="mt-1 sm:mt-1 md:mt-3">{category.subHeading}</p>
+          </div>
         </div>
-      </div>
-      <div className=" w-1/2 lg:w-1/4 p-2 flex justify-center items-center">
-        <div className="w-[140px] h-[182px] md:h-[240px] md:w-[265px] bg-slate-300 rounded-lg flex flex-col justify-center items-center text-center">
-          <img src={Diamond} alt="" className="mx-auto h-16 w-16" />
-          <p className="font-bold mt-4 sm:mt-2 md:mt-10">Self Improvement</p>
-          <p className="mt-1 sm:mt-1 md:mt-3">Books for Motivate Yourself</p>
-        </div>
-      </div>
-      <div className=" w-1/2 lg:w-1/4 p-2 flex justify-center items-center">
-        <div className="w-[140px] h-[182px] md:h-[240px] md:w-[265px] bg-slate-300 rounded-lg flex flex-col justify-center items-center text-center">
-          <img src={Book} alt="" className="mx-auto h-16 w-16" />
-          <p className="font-bold mt-4 sm:mt-2 md:mt-10">Novel Telenovela</p>
-          <p className="mt-1 sm:mt-1 md:mt-3">Books about Great Story</p>
-        </div>
-      </div>
-      <div className=" w-1/2 lg:w-1/4 p-2 flex justify-center items-center">
-        <div className="w-[140px] h-[182px] md:h-[240px] md:w-[265px] bg-slate-300 rounded-lg flex flex-col justify-center items-center text-center">
-          <img src={Group} alt="" className="mx-auto h-16 w-16" />
-          <p className="font-bold mt-4 sm:mt-2 md:mt-10">Skill in Future</p>
-          <p className="mt-1 sm:mt-1 md:mt-3">Books for Self Preparation</p>
-        </div>
-      </div>
+      ))}
+
       <button className=" shadow-lg border rounded-full bg-slate-200 h-14 w-14 flex justify-center items-center lg:absolute lg:right-0 ">
         <img src={Arrow} alt="arrow" />
       </button>

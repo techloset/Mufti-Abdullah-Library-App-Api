@@ -1,4 +1,3 @@
-import "./App.css";
 import Index from "./routes/Routes";
 
 function App() {

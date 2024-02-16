@@ -6,7 +6,7 @@ import { selectAllSearch, selectIsLoading } from "../../redux/SearchSlice";
 import { searchBooks } from "../../redux/SearchSlice";
 import MonthlyCard from "../../components/monthlyCard/MonthlyCard";
 import Loader from "../../components/loader/Loader";
-import { BooksDetails } from "../../constants/Types";
+import { Books, BooksDetails } from "../../constants/Types";
 
 const Searches = () => {
   const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
@@ -27,7 +27,13 @@ const Searches = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(searchBooks(query));
+    setQuery(" ");
   };
+  useEffect(() => {
+    return () => {
+      dispatch(searchBooks(""));
+    };
+  }, [dispatch]);
 
   return (
     <>
@@ -59,13 +65,18 @@ const Searches = () => {
             Search Results
           </h1>
           <div className="grid grid-cols-1 text-center justify-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {searches.map((search: BooksDetails) =>
-              search.title && search.thumbnail ? (
+            {searches.map((search) =>
+              search.volumeInfo?.imageLinks ? (
                 <MonthlyCard
                   key={search.id}
-                  title={search.title.slice(0, 18) + ".."}
-                  thumbnail={search.thumbnail}
-                  author={search?.author?.join(", ").slice(0, 10)}
+                  title={search?.volumeInfo?.title.slice(0, 18) + ".."}
+                  thumbnail={search.volumeInfo.imageLinks.thumbnail}
+                  author={
+                    search.volumeInfo.authors &&
+                    Array.isArray(search.volumeInfo.authors)
+                      ? search.volumeInfo.authors.join().slice(0, 10)
+                      : "Authors Not Found"
+                  }
                   amount={search.amount === undefined ? search.amount : "N/A"}
                   id={search.id}
                 />

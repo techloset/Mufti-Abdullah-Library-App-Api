@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { searchBooks, selectIsLoading } from "../../redux/SearchSlice";
+import {
+  searchBooks,
+  selectAllSearch,
+  selectIsLoading,
+} from "../../redux/SearchSlice";
 import { RootState } from "../../redux/Store";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import SliderComponent from "../../components/swiper/Swiper";
@@ -14,19 +18,23 @@ import { MostPopularBooks, selectAllBooks } from "../../redux/MostPopularSlice";
 
 function Detail() {
   const [bookDetails, setBookDetails] = useState<any>({});
+  const [dataLoaded, setDataLoaded] = useState(false);
   const { id } = useParams();
   const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
-  const searches = useSelector((state: RootState) => state.search.searches);
+  const searches = useSelector(selectAllSearch) || [];
   const bestOfMonth = useSelector(selectAllBestBooks);
   const popularBooks = useSelector(selectAllBooks);
   const isLoading = useSelector(selectIsLoading);
+
   useEffect(() => {
     dispatch(BestMonthBooks());
     dispatch(MostPopularBooks());
-    if (id) {
+    if (id !== undefined) {
       dispatch(searchBooks(id));
     }
+    setDataLoaded(true);
   }, [dispatch, id]);
+
   const selectedBook = [...bestOfMonth, ...popularBooks, ...searches].find(
     (book) => book.id === id
   );
@@ -35,7 +43,7 @@ function Detail() {
       setBookDetails(selectedBook);
     }
   }, [selectedBook]);
-
+  const bookTitle = bookDetails?.volumeInfo?.title || bookDetails?.title;
   return (
     <>
       {isLoading ? (
@@ -84,7 +92,7 @@ function Detail() {
             </div>
           </div>
 
-          <SliderComponent />
+          <SliderComponent title={bookTitle} />
         </>
       )}
     </>

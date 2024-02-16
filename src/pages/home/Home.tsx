@@ -1,6 +1,6 @@
 import CTA from "../../components/cta/CTA";
 import Category from "../../components/category/Category";
-import HomeSection from "../../components/cardSection/HomeSection";
+import HomeSection from "../../components/HomeSection/HomeSection";
 
 function Home() {
   return (
