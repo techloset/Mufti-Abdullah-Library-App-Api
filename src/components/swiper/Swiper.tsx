@@ -6,7 +6,7 @@ import arrowR from "../../assets/icons/arrow-right-white.png";
 import Slider from "react-slick";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/Store";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
+import { Action, AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import Card from "../swiperCard/Card";
 import { Books } from "../../constants/Types";
 import {
@@ -14,14 +14,20 @@ import {
   selectAllSearchForSwiper,
 } from "../../redux/SearchSliceForSwiper";
 
-const SliderComponent: React.FC<{ title: string }> = ({ title }) => {
+const SliderComponent: React.FC<{ title: string | undefined }> = ({
+  title,
+}) => {
   const [query, setQuery] = useState(title);
-  const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+  const dispatch = useDispatch();
   const books: Books[] = useSelector(selectAllSearchForSwiper);
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await dispatch(searchBooksForSwiper(query));
+        if (query) {
+          const response = await dispatch(
+            searchBooksForSwiper(query) as unknown as Action
+          );
+        }
       } catch (error) {
         console.error("Error fetching books:", error);
       }

@@ -3,31 +3,9 @@ import Diamond from "../../assets/icons/iconspace_Diamond.png";
 import Book from "../../assets/icons/iconspace_Book_3.png";
 import Group from "../../assets/icons/iconspace_Group.png";
 import Arrow from "../../assets/icons/arrow-right.png";
+import { categories } from "../../constants/Types";
 
 const Category = () => {
-  const categories = [
-    {
-      heading: "Business & Finance",
-      subHeading: "Books about Business World",
-      imageSource: PieChart,
-    },
-    {
-      heading: "Self Improvement",
-      subHeading: "Books for Motivate Yourself",
-      imageSource: Diamond,
-    },
-    {
-      heading: "Novel Telenovela",
-      subHeading: "Books about Great Story",
-      imageSource: Book,
-    },
-    {
-      heading: "Skill in Future",
-      subHeading: "Books for Self Preparation",
-      imageSource: Group,
-    },
-  ];
-
   return (
     <div className="flex flex-wrap justify-center items-center relative">
       {categories.map((category, index) => (

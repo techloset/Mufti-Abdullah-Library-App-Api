@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
+import { Action, AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/Store";
 import { MostPopularBooks, selectAllBooks } from "../../redux/MostPopularSlice";
@@ -29,7 +29,7 @@ function HomeSection() {
     setIsTabletMode(window.innerWidth >= 768);
   };
 
-  const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+  const dispatch = useDispatch();
   const books: Books[] = useSelector(selectAllBooks) as Books[];
   const bestBooks: Books[] = useSelector(selectAllBestBooks) as Books[];
 
@@ -37,8 +37,8 @@ function HomeSection() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        await dispatch(MostPopularBooks());
-        await dispatch(BestMonthBooks());
+        await dispatch(MostPopularBooks() as unknown as Action);
+        await dispatch(BestMonthBooks() as unknown as Action);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);

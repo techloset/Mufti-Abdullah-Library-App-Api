@@ -7,7 +7,7 @@ import {
   selectIsLoading,
 } from "../../redux/SearchSlice";
 import { RootState } from "../../redux/Store";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
+import { Action, AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import SliderComponent from "../../components/swiper/Swiper";
 import Loader from "../../components/loader/Loader";
 import {
@@ -15,22 +15,23 @@ import {
   selectAllBestBooks,
 } from "../../redux/BestOfThisMonthSlice";
 import { MostPopularBooks, selectAllBooks } from "../../redux/MostPopularSlice";
+import { DetailBooks } from "../../constants/Types";
 
 function Detail() {
-  const [bookDetails, setBookDetails] = useState<any>({});
+  const [bookDetails, setBookDetails] = useState<DetailBooks>();
   const [dataLoaded, setDataLoaded] = useState(false);
   const { id } = useParams();
-  const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+  const dispatch = useDispatch();
   const searches = useSelector(selectAllSearch) || [];
   const bestOfMonth = useSelector(selectAllBestBooks);
   const popularBooks = useSelector(selectAllBooks);
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(BestMonthBooks());
-    dispatch(MostPopularBooks());
+    dispatch(BestMonthBooks() as unknown as Action);
+    dispatch(MostPopularBooks() as unknown as Action);
     if (id !== undefined) {
-      dispatch(searchBooks(id));
+      dispatch(searchBooks(id) as unknown as Action);
     }
     setDataLoaded(true);
   }, [dispatch, id]);
@@ -40,7 +41,7 @@ function Detail() {
   );
   useEffect(() => {
     if (selectedBook) {
-      setBookDetails(selectedBook);
+      setBookDetails(selectedBook as DetailBooks);
     }
   }, [selectedBook]);
   const bookTitle = bookDetails?.volumeInfo?.title || bookDetails?.title;

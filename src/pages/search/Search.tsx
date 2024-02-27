@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
+import { Action, AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllSearch, selectIsLoading } from "../../redux/SearchSlice";
@@ -9,14 +9,14 @@ import Loader from "../../components/loader/Loader";
 import { Books, BooksDetails } from "../../constants/Types";
 
 const Searches = () => {
-  const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const searches = useSelector(selectAllSearch) || [];
   const [query, setQuery] = useState("");
 
   useEffect(() => {
     if (query) {
-      dispatch(searchBooks(query));
+      dispatch(searchBooks(query) as unknown as Action);
     }
   }, [dispatch]);
 
@@ -26,12 +26,12 @@ const Searches = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(searchBooks(query));
+    dispatch(searchBooks(query) as unknown as Action);
     setQuery(" ");
   };
   useEffect(() => {
     return () => {
-      dispatch(searchBooks(""));
+      dispatch(searchBooks("") as unknown as Action);
     };
   }, [dispatch]);
 
