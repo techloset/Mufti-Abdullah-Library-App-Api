@@ -48,10 +48,10 @@ const Searches = () => {
             <div className="items-center mx-auto bg-bgtertiary  rounded-full justify-center flex lg:w-[610px] sm:w-[334px] h-[49px] md:h-[54px]">
               <form
                 onSubmit={handleSubmit}
-                className="items-center mx-auto bg-bgtertiary  rounded-full justify-center flex lg:w-[610px] sm:w-[334px] h-[49px] md:h-[54px]"
+                className="items-center mx-auto bg-bgtertiary  rounded justify-center flex lg:w-[610px] sm:w-[336px] h-[46px] md:h-[72px]"
               >
                 <input
-                  className="bg-bgtertiary text-black bg-opacity-25 placeholder-black  w-full ps-4 focus:outline-none"
+                  className="bg-bgtertiary text-black bg-opacity-25 placeholder-placeholder  w-full ps-11 focus:outline-none"
                   type="text"
                   placeholder="Search Books"
                   value={query}

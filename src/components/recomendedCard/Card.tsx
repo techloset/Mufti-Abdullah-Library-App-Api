@@ -27,18 +27,14 @@ const Card: React.FC<Book> = ({ thumbnail, title, amount, id, author }) => {
         />
       </div>
       <div className="flex flex-col sm:gap-2 gap-0 mx-auto sm:w-[119px] sm:h-[177.5px] w-full h-[142px]">
-        <p className=" font-semibold italic text-[22px] text-wrap text-primary sm:mt-2 mt-0 font-hanken">
+        <p className=" font-semibold italic text-[16px] sm:text-[22px] text-wrap text-primary sm:mt-2 mt-0 font-hanken">
           {title}
         </p>
-        <p className=" font-semibold  text-[16px] text-wrap text-primary mt-2 mx-auto sm:mx-0 font-hanken">
-          {author}
-        </p>
-        <p className=" font-bold  text-[22px] text-wrap text-secondary sm:mx-0 mx-auto font-hanken">
-          {" "}
+        <p className=" font-bold  text-[20px] text-wrap text-secondary sm:mx-0 mx-auto font-hanken">
           {amount}
         </p>
-        <div className="flex  mb-2 mx-auto sm:mx-0">
-          <button className="rounded-full bg-primary font-semibold sm:w-[101px] md:w-[70px] lg:w-[101px] text-center p-2 text-[white] sm:text-[14px] md:text-[10px] lg:text-[14px]">
+        <div className="flex mt-2 mb-2 mx-auto sm:mx-0">
+          <button className="rounded-full bg-primary font-semibold w-[101px] md:w-[70px] lg:w-[101px] text-center p-2 text-[white] sm:text-[14px] md:text-[10px] lg:text-[14px]">
             Buy Now
           </button>{" "}
         </div>

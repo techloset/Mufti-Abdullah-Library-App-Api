@@ -7,7 +7,7 @@ import { categories } from "../../constants/Types";
 
 const Category = () => {
   return (
-    <div className="flex flex-wrap justify-center items-center relative">
+    <div className="flex flex-wrap justify-center text-primary items-center relative">
       {categories.map((category, index) => (
         <div
           key={index}
@@ -19,15 +19,17 @@ const Category = () => {
               alt=""
               className="mx-auto h-16 w-16"
             />
-            <p className="font-bold mt-4 sm:mt-2 md:mt-10">
+            <p className="font-bold text-[16px] sm:text-[22px] mt-4 sm:mt-2 md:mt-10">
               {category.heading}
             </p>
-            <p className="mt-1 sm:mt-1 md:mt-3">{category.subHeading}</p>
+            <p className="mt-1 sm:mt-1 md:mt-3 text-textHead">
+              {category.subHeading}
+            </p>
           </div>
         </div>
       ))}
 
-      <button className=" shadow-lg border rounded-full bg-slate-200 h-14 w-14 flex justify-center items-center lg:absolute lg:right-0 ">
+      <button className=" shadow-lg border-white rounded-full bg-white h-14 w-14 flex justify-center items-center lg:absolute lg:right-0 ">
         <img src={Arrow} alt="arrow" />
       </button>
     </div>

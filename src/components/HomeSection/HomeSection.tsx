@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Action, AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/Store";
+
 import { MostPopularBooks, selectAllBooks } from "../../redux/MostPopularSlice";
 import {
   BestMonthBooks,
@@ -80,7 +80,7 @@ function HomeSection() {
                 />
               ))}
             </div>
-            <div className="bg-bgPrimary flex justify-center content-center text-center items-center p-2 h-[72px] text-secondary">
+            <div className="bg-bgPrimary ms-3 w-[780px] flex justify-center content-center text-center items-center p-2 h-[72px] text-secondary">
               <p className="font-bold text-[16px] font-hanken">
                 MORE RECOMMENDATIONS
               </p>
@@ -105,15 +105,14 @@ function HomeSection() {
                         book.volumeInfo?.imageLinks?.thumbnail ??
                         "default-thumbnail.jpg"
                       }
-                      author={book.volumeInfo?.authors?.join().slice(0, 8)}
                       amount={book.amount !== undefined ? book.amount : "N/A"}
                       id={book.id}
                     />
                   ))}
             </div>
-            <hr className="border-gray-400" />
-            <div className="flex justify-center p-6 text-center text-bold text-secondary">
-              <p className="font-bold text-[16px] font-hanken">
+            <hr className="text-bgSecondry border-[1px]" />
+            <div className="flex justify-center p-6  text-center text-bold ">
+              <p className="font-bold leading-5 text-secondary text-[16px] font-hanken">
                 SEE BEST BOOKS
               </p>
             </div>
@@ -152,7 +151,7 @@ function HomeSection() {
                 </div>
               ))}
             </div>
-            <div className="bg-bgPrimary flex justify-center content-center text-center items-center p-2 h-[72px] text-secondary">
+            <div className="bg-bgPrimary w-[280px] mx-auto flex justify-center content-center text-center items-center p-2 h-[72px] text-secondary">
               <p className="font-bold text-[16px] font-hanken">
                 MORE RECOMMENDATIONS
               </p>
@@ -171,14 +170,13 @@ function HomeSection() {
                       <Card
                         key={book.id?.toString()}
                         title={
-                          book.volumeInfo?.title.slice(0, 14) + "...." ??
+                          book.volumeInfo?.title.slice(0, 14) + ".." ??
                           "not exist"
                         }
                         thumbnail={
                           book.volumeInfo?.imageLinks?.thumbnail ??
                           "default-thumbnail.jpg"
                         }
-                        author={book.volumeInfo?.authors?.join().slice(0, 8)}
                         amount={book.amount !== undefined ? book.amount : "N/A"}
                         id={book.id}
                       />

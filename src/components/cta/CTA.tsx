@@ -8,19 +8,19 @@ export default function App() {
             Be the First to know <br /> Our Promo before others!
           </p>
         </div>
-        <div className="relative flex flex-col sm:flex-row w-full mt-8">
-          <div className="relative w-full ">
+        <div className="relative flex flex-col mx-auto sm:flex-row  mt-8">
+          <div className="relative w-[280px] sm:w-[447px] ">
             <input
               type="text "
               placeholder="Enter Email"
-              className=" p-3 pl-10 border border-gray-300 rounded mb-2 sm:mb-0 w-full md:pb-3 pb-20"
+              className=" p-4 pl-10  rounded mb-2 sm:mb-0 w-full md:pb-3 pb-20"
             />
             <img
               src={env}
               alt=""
               className="absolute left-3 md:top-1/4 top-6 transform -translate-y-1/5"
             />
-            <button className="bg-bgRegister w-[95%] ms-2 md:w-auto absolute text-white p-2 mt-1.5 me-1 rounded sm:absolute md:right-0 md:left-auto left-0 top-16 md:top-0 sm:transform-none">
+            <button className="bg-bgRegister w-[256px] sm:w-[163px]  ms-2 absolute text-white p-2 mt-1.5 me-1 rounded sm:absolute md:right-0 md:left-auto left-0 top-16 md:top-0 sm:transform-none">
               Register
             </button>
           </div>
