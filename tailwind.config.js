@@ -30,6 +30,7 @@ module.exports = {
       tersary: "#5A7184",
       bgtertiary: "#ECEEF2",
       border: "#ECEEF2",
+      homeSecondry: "#F7F8F9",
     },
     textColor: {
       white: "#fff",

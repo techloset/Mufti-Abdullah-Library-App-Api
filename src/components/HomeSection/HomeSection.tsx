@@ -86,11 +86,11 @@ function HomeSection() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 p-3 gap-3">
-            <h1 className="ms-3 font-bold italic mt-0 text-[32px] text-primary">
+          <div className="grid  grid-cols-1 p-3 gap-3">
+            <h1 className="ms-3 font-bold italic mt-0 text-[32px]  text-primary">
               Best Of this Month
             </h1>
-            <div className="bg-bgSecondry rounded-md p-5 space-y-3">
+            <div className="bg-homeSecondry rounded-md p-5 space-y-3">
               {bestBooks &&
                 bestBooks
                   .slice(0, 6)
@@ -109,12 +109,12 @@ function HomeSection() {
                       id={book.id}
                     />
                   ))}
-            </div>
-            <hr className="text-bgSecondry border-[1px]" />
-            <div className="flex justify-center p-6  text-center text-bold ">
-              <p className="font-bold leading-5 text-secondary text-[16px] font-hanken">
-                SEE BEST BOOKS
-              </p>
+              <hr className="text-bgSecondry border-[1px]" />
+              <div className="flex justify-center p-6 bg-homeSecondry  text-center text-bold ">
+                <p className="font-bold leading-5 text-secondary text-[16px] font-hanken">
+                  SEE BEST BOOKS
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -159,10 +159,10 @@ function HomeSection() {
           </div>
           <aside className="w-full md:w-1/4 p-4 flex flex-col items-center gap-5">
             <div>
-              <h1 className="ms-3 text-center font-bold italic text-wrap text-[32px] mb-8 sm:mb-0 text-primary">
-                Best Of This Month
-              </h1>{" "}
-              <div className="flex flex-col gap-5 items-center border-gray-200 p-4 rounded-md">
+              <h1 className="ms-3 text-center font-bold italic text-wrap text-[28px] sm:text-[32px] mb-8 sm:mb-0 text-primary">
+                Best This Month
+              </h1>
+              <div className="flex flex-col bg-homeSecondry gap-5 items-center border-gray-200 p-4 rounded-md">
                 {bestBooks &&
                   bestBooks
                     .slice(0, 6)
@@ -181,12 +181,12 @@ function HomeSection() {
                         id={book.id}
                       />
                     ))}
-              </div>
-              <hr className="border-gray-400" />
-              <div className="flex justify-center p-6 text-center text-bold text-secondary">
-                <p className="font-bold text-[16px] font-hanken">
-                  SEE BEST BOOKS
-                </p>
+                <hr className="border-[1px] w-full text-bgSecondry" />
+                <div className="flex justify-center p-6 text-center text-bold text-secondary">
+                  <p className="font-bold text-[16px] font-hanken">
+                    SEE BEST BOOKS
+                  </p>
+                </div>
               </div>
             </div>
           </aside>

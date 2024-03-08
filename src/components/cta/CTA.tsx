@@ -1,8 +1,16 @@
 import env from "../../assets/icons/envelope.png";
+import oval from "../../assets/icons/Oval.png";
 export default function App() {
   return (
     <>
-      <div className="container mx-auto grid md:grid-cols-2 grid-cols-1 rounded  flex-col md:flex-row bg-secondary sm:p-16 p-6 sm:h-[236px] h-[306px] border-0">
+      <div
+        style={{
+          backgroundImage: `url(${oval})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="container mx-auto grid md:grid-cols-2 grid-cols-1  rounded  flex-col md:flex-row bg-secondary sm:p-16 p-6 sm:h-[236px] h-[306px] border-0"
+      >
         <div className="text-[black] md:mb-0">
           <p className="font-bold sm:leading-[48px] leading-[36px] text-wrap sm:text-[36px] text-[28px] lg:w-[423px] lg:h-[96px] md:w-[300px] md:h-[96px] sm:h-[108px] sm:w-[280] italic text-[white] font-hanken">
             Be the First to know <br /> Our Promo before others!
